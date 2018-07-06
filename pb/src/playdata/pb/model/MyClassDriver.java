@@ -17,18 +17,20 @@ public class MyClassDriver {
 			try {
 				pro.load(new FileReader("conn/conn.properties"));
 				Class.forName(pro.getProperty("driver"));
-				conn = DriverManager.getConnection(pro.getProperty("url"), pro);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
 	}
 	public Connection getConnection() {
+		try {
+			conn = DriverManager.getConnection(pro.getProperty("url"), pro);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return conn;
 	}
 }
