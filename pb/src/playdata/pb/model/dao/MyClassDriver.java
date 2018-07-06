@@ -1,4 +1,4 @@
-package playdata.pb.model;
+package playdata.pb.model.dao;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
