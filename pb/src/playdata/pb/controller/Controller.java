@@ -135,7 +135,7 @@ public class Controller implements ActionListener {
 		else if(ob == v_login.bt_login) {//로그인창 시작.
 			String id = v_login.tf_id.getText();
 			String pass = new String(v_login.tf_pass.getPassword());
-			
+			System.out.println(pass);
 			if(id.equals("admin") && pass.equals("manager")) {//1-1 관리자 로그인
 				v_login.showMsg("관리자 로그인 성공!!");
 				v_login.setVisible(false);

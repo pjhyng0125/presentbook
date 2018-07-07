@@ -14,7 +14,7 @@ public class MyClassDriver {
 		try {
 			Properties pro;
 			pro = new Properties();
-			pro.load(new FileReader("conn/conn.properties"));
+			pro.load(new FileReader("C:\\Users\\Playdata\\Documents\\GitHub\\presentbook\\pb\\conn\\conn.properties"));
 			Class.forName(pro.getProperty("driver"));
 			conn = DriverManager.getConnection(pro.getProperty("url"), pro);
 		} catch (Exception e) {

@@ -15,7 +15,7 @@ public class MemberDAO {
 	public boolean loginCheck(String id, String pass) {// 1.로그인 2.회원정보 수정 시 현재 비밀번호와 같은지 check
 		try {
 			connect();
-			String sql = "select count(*) from member " + "where id = ? and pass = ?";
+			String sql = "select count(*) from member  where id=? and pass=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pass);
@@ -23,7 +23,7 @@ public class MemberDAO {
 			rs.next();
 			int t = rs.getInt(1);
 			System.out.println(t);
-			if(t==1) return true;
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
