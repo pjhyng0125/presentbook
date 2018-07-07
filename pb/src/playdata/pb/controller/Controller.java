@@ -13,6 +13,7 @@ import playdata.pb.model.vo.Book;
 import playdata.pb.model.vo.Member;
 import playdata.pb.view.AdminView;
 import playdata.pb.view.BookGenreView;
+import playdata.pb.view.BookPayView;
 import playdata.pb.view.BookSelectView;
 import playdata.pb.view.CashView;
 import playdata.pb.view.HistoryView;
@@ -27,6 +28,7 @@ public class Controller implements ActionListener {
 	PassUpdateView v_passup;
 	BookGenreView v_bookgenre;
 	BookSelectView v_bookselect;
+	BookPayView v_bookpay;
 	MyPageView v_mypage;
 	HistoryView v_history;
 	CashView v_cash;
@@ -49,7 +51,7 @@ public class Controller implements ActionListener {
 		v_history = new HistoryView();
 		v_cash = new CashView();
 		v_admin = new AdminView();
-
+		v_bookpay = new BookPayView();
 		list = new ArrayList<>();
 		eventup();
 	}
@@ -60,6 +62,7 @@ public class Controller implements ActionListener {
 		v_bookgenre.bt_select.addActionListener(this);
 		v_bookselect.bt_logout.addActionListener(this);
 		v_bookselect.bt_genre.addActionListener(this);
+		v_bookselect.bt_select.addActionListener(this);
 		v_login.bt_login.addActionListener(this);
 		v_join.bt_reset.addActionListener(this);
 		v_bookselect.bt_mypage.addActionListener(this);
@@ -80,8 +83,11 @@ public class Controller implements ActionListener {
 		v_admin.bt_selectbook.addActionListener(this);
 		v_admin.bt_addquiz.addActionListener(this);
 		v_admin.bt_addbook.addActionListener(this);
+
 		
-		
+		v_bookpay.bt_pay.addActionListener(this);
+		v_bookpay.bt_back.addActionListener(this);
+
 		for (int i = 0; i < v_bookselect.v_bc.length; i++) {
 			v_bookselect.v_bc[i].tbt_image.addMouseListener(new MouseAdapter() {
 				@Override
@@ -201,7 +207,14 @@ public class Controller implements ActionListener {
 				v_login.tf_id.requestFocus();
 				v_login.tf_pass.setText("");
 			}
-		} else if (ob == v_join.bt_reset) {
+		}else if(ob== v_join.bt_checkid) {
+			String id = v_join.tf_id.getText();
+			if(new MemberDAO().dupliCheck(id)) {
+				v_join.showMsg("중복된 아이디가 존재합니다.");
+				v_join.tf_id.setText("");
+				v_join.tf_id.requestFocus();
+			}
+		}else if (ob == v_join.bt_reset) {
 			v_join.setVisible(false);
 			v_login.setVisible(true);
 		} else if (ob == v_bookselect.bt_mypage) {// 마이페이지로 이동
@@ -214,7 +227,18 @@ public class Controller implements ActionListener {
 
 			v_bookselect.setVisible(false);
 			v_mypage.setVisible(true);
-		} else if (ob == v_mypage.bt_back) {
+		}else if(ob==v_bookselect.bt_select){
+			
+			
+			Member m = new MemberDAO().selectMypage("회원 ID: " +userid);
+			v_bookpay.la_id.setText(m.getId());
+			v_bookpay.la_grade.setText("회원 등급: "+grade[m.getEgrade()-1]);
+			v_bookpay.la_point.setText("회원 포인트: "+m.getPoint()+"P");
+			
+			
+			v_bookselect.setVisible(false);
+			v_bookpay.setVisible(true);
+		}else if (ob == v_mypage.bt_back) {
 			v_mypage.setVisible(false);
 			v_bookselect.setVisible(true);
 		} else if (ob == v_mypage.bt_logout) {
@@ -298,6 +322,10 @@ public class Controller implements ActionListener {
 		}else if(ob == v_admin.bt_selectallbook) {
 			
 		}else if(ob == v_admin.bt_selectbook) {
+			
+		}else if(ob == v_bookpay.bt_pay) {
+			
+		}else if(ob == v_bookpay.bt_back) {
 			
 		}
 

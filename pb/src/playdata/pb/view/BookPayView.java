@@ -12,13 +12,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class BookPayView extends JFrame {
-	JPanel p_book, p_pay;
-	JLabel la_image, la_book, la_writer, la_price;
-	JTextArea ta_content;
+	public JPanel p_book, p_pay;
+	public JLabel la_image, la_book, la_writer, la_price;
+	public JTextArea ta_content;
 	
-	JLabel la_id, la_grade, la_point, la_lend, la_showpoint;
-	JTextField tf_point;
-	JButton bt_pay, bt_back;
+	public JLabel la_id, la_grade, la_point, la_lend, la_showpoint;
+	public JTextField tf_point;
+	public JButton bt_pay, bt_back;
 	
 	public BookPayView() {
 		setTitle("BookPayView");
@@ -77,7 +77,7 @@ public class BookPayView extends JFrame {
 		add(p_pay, BorderLayout.CENTER);
 		
 		setSize(800,600);
-		setVisible(true);
+		setVisible(false);
 	}
 	public static void main(String[] args) {
 		new BookPayView();
