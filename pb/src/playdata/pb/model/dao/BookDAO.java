@@ -145,9 +145,9 @@ public class BookDAO {
 		Book b = null;
 		
 		try {
-			String sql="select genre, bname, writer, prent, clearNum, originPrice, summary"
+			String sql="select genre, bname, writer, prent, clearNum, originPrice, summary, image "
 					  +"where isbn=?";
-			
+		 
 			pstmt = conn.prepareStatement(sql);
 			  pstmt.setInt(1, isbn);
 			if(rs.next()) {
@@ -158,7 +158,8 @@ public class BookDAO {
 							rs.getInt("prent"),
 							rs.getInt("clearNum"),
 							rs.getInt("originPrice"),
-							rs.getString("summary"));
+							rs.getString("summary"),
+							rs.getString("image "));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -202,7 +203,7 @@ public class BookDAO {
 		ArrayList<Book> bookList = new ArrayList<>();
 		
 		try {
-			String sql = "select isbn, genre, bname, writer, prent, clearNum, originPrice, summary from book";
+			String sql = "select isbn, genre, bname, writer, prent, clearNum, originPrice, summary, image from book";
 			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -216,7 +217,8 @@ public class BookDAO {
 								rs.getInt("prent"),
 								rs.getInt("clearNum"),
 								rs.getInt("originPrice"),
-								rs.getString("summary"));
+								rs.getString("summary"),
+								rs.getString("image"));
 				bookList.add(b);
 			}
 		} catch (SQLException e) {
@@ -229,7 +231,7 @@ public class BookDAO {
 	
 	
 	public boolean selectDuplicatedIsbn(String isbn) {
-		connect();
+		connect(); 
 		
 		try {
 			String sql = "select count(*) count from book where isbn=?";

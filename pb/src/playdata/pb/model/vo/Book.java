@@ -10,6 +10,7 @@ public class Book {
 	int clearNum;
 	int originPrice;
 	String summary;
+	String imange;
 	
 	
 	public Book(String bname, String writer, int originPrice, String summary) {
@@ -19,8 +20,8 @@ public class Book {
 		this.summary = summary;
 	}
 
-	public Book(int isbn, String genre, String bname, String writer, int prent, int clearNum, int originPrice,
-			String summary) {
+    public Book(int isbn, String genre, String bname, String writer, int prent, int clearNum, int originPrice,
+			String summary, String imange) {
 		super();
 		this.isbn = isbn;
 		this.genre = genre;
@@ -30,8 +31,17 @@ public class Book {
 		this.clearNum = clearNum;
 		this.originPrice = originPrice;
 		this.summary = summary;
+		this.imange = imange;
+	}
+    
+	public String getImange() {
+		return imange;
 	}
 
+
+	public void setImange(String imange) {
+		this.imange = imange;
+	}
 
 	public String getSummary() {
 		return summary;
@@ -100,10 +110,8 @@ public class Book {
 	@Override
 	public String toString() {
 		return "Book [isbn=" + isbn + ", genre=" + genre + ", bname=" + bname + ", writer=" + writer + ", prent="
-				+ prent + ", clearNum=" + clearNum + ", originPrice=" + originPrice + ", summary=" + summary + "]";
+				+ prent + ", clearNum=" + clearNum + ", originPrice=" + originPrice + ", summary=" + summary
+				+ ", imange=" + imange + "]";
 	}
 
-	
-	
-	
 }
