@@ -16,7 +16,7 @@ public class PassUpdateView extends JFrame {
 	 
 	  public PassUpdateView()
 	 {   
-	  setTitle("비밀번호 수정");
+	  setTitle("PassUpdateView");
 	  
 	  tf_id = new JTextField();
 	  tf_pass = new JPasswordField();

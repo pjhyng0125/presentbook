@@ -7,6 +7,7 @@ import playdata.pb.view.BookGenreView;
 import playdata.pb.view.BookSelectView;
 import playdata.pb.view.JoinView;
 import playdata.pb.view.LoginView;
+import playdata.pb.view.MyPageView;
 import playdata.pb.view.PassUpdateView;
 
 public class Controller implements ActionListener {
@@ -15,6 +16,7 @@ public class Controller implements ActionListener {
 	PassUpdateView v_passup;
 	BookGenreView v_bookgenre;
 	BookSelectView v_bookselect;
+	MyPageView v_mypage;
 	
 	public Controller() {
 		v_login = new LoginView();
@@ -22,7 +24,7 @@ public class Controller implements ActionListener {
 		v_passup = new PassUpdateView();
 		v_bookgenre = new BookGenreView();
 		v_bookselect =new BookSelectView();
-		
+		v_mypage = new MyPageView();
 		eventup();
 	}
 	
@@ -33,6 +35,13 @@ public class Controller implements ActionListener {
 		v_bookselect.bt_logout.addActionListener(this);
 		v_bookselect.bt_genre.addActionListener(this);
 		v_login.bt_login.addActionListener(this);
+		v_join.bt_reset.addActionListener(this);
+		v_bookselect.bt_mypage.addActionListener(this);
+		v_mypage.bt_back.addActionListener(this);
+		v_mypage.bt_logout.addActionListener(this);
+		v_mypage.bt_update.addActionListener(this);
+		v_passup.bt_reset.addActionListener(this);
+		v_passup.bt_submit.addActionListener(this);
 	}
 	
 	public static void main(String[] args) {
@@ -65,6 +74,34 @@ public class Controller implements ActionListener {
 		else if(ob == v_login.bt_login) {
 			v_login.setVisible(false);
 			v_bookselect.setVisible(true);
+		}
+		else if(ob == v_join.bt_reset) {
+			v_join.setVisible(false);
+			v_login.setVisible(true);
+		}
+		else if(ob == v_bookselect.bt_mypage) {
+			v_bookselect.setVisible(false);
+			v_mypage.setVisible(true);
+		}
+		else if(ob == v_mypage.bt_back) {
+			v_mypage.setVisible(false);
+			v_bookselect.setVisible(true);
+		}
+		else if(ob == v_mypage.bt_logout) {
+			v_mypage.setVisible(false);
+			v_login.setVisible(true);
+		}
+		else if(ob == v_mypage.bt_update) {
+			v_mypage.setVisible(false);
+			v_passup.setVisible(true);
+		}
+		else if(ob == v_passup.bt_reset) {
+			v_passup.setVisible(false);
+			v_mypage.setVisible(true);
+		}
+		else if(ob == v_passup.bt_submit) {
+			v_passup.setVisible(false);
+			v_mypage.setVisible(true);
 		}
 			
 	}

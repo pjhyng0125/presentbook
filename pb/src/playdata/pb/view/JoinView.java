@@ -18,7 +18,7 @@ public class JoinView extends JFrame
 	 String items[] = {"수필", "소설", "스릴러"};
 	  public JoinView()
 	 {   
-	  setTitle("회원가입");
+	  setTitle("joinView");
 	  
 	  tf_id = new JTextField();
 	  tf_pass = new JPasswordField();
