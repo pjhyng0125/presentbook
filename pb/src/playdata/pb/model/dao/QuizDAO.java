@@ -34,7 +34,7 @@ public class QuizDAO {
 	public boolean insertQuiz(Quiz q) {//도서별 퀴즈 입력
 	    try {
 	         connect();
-	         String sql = "insert into quiz values(?,?,?)";
+	         String sql = "insert into quiz values (?,?,?)";
 	         pstmt = conn.prepareStatement(sql);
 	         pstmt.setInt(1, q.getIsbn());
 	         pstmt.setString(2, q.getQuiz());

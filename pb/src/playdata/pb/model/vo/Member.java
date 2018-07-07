@@ -15,7 +15,6 @@ public class Member {
 	}
 
 	public Member(String ename, int egrade, int point, int cash) {
-		super();
 		this.ename = ename;
 		this.egrade = egrade;
 		this.point = point;

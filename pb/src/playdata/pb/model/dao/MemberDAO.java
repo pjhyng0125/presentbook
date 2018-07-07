@@ -150,6 +150,7 @@ public class MemberDAO {
 	         pstmt.setString(1, checkStr);
 	         rs = pstmt.executeQuery();
 	         rs.next();
+	       
 	         int t = rs.getInt("count");
 	         if(t>0) return true;
 	      } catch (SQLException e) {
@@ -213,7 +214,40 @@ public class MemberDAO {
 	    return false;
 	}
 	
+	public int selectGrade(String id) {//아이디를 이용하여 등급 알아내기
+	    try {
+	         connect();
+	         String sql = "select egrade from member where id=?";
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, id);
+	         rs = pstmt.executeQuery();
+	         if(rs.next()) {
+	        	 return rs.getInt("egrade");
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         disconnect();
+	      }
+	    return 0;
+	}
 	
+	public boolean updateGrade(String id, int egrade) {//아이디에 대한 등급 변경
+	    try {
+	         connect();
+	         String sql = "update member set egrade=? where id=?";
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, egrade);
+	         pstmt.setString(2, id);
+	         int t = pstmt.executeUpdate();
+	         if(t>0) return true;
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         disconnect();
+	      }
+	    return false;
+	}
 	
 	public void connect() {
 		conn = new MyClassDriver().getConnection();
