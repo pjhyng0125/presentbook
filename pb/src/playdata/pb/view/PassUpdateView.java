@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 public class PassUpdateView extends JFrame {
 	 public JTextField tf_id,tf_name,tf_email;
 	 public JPasswordField tf_pass,tf_pass2;
-	 public JButton bt_submit,bt_reset,bt_checkid;
+	 public JButton bt_submit,bt_reset;
 	 JLabel la_id,la_pass1,la_pass2,la_n,la_email;
 	 
 	 
@@ -26,7 +26,6 @@ public class PassUpdateView extends JFrame {
 	  
 	     bt_submit = new JButton("등록");
 	     bt_reset = new JButton("취소");
-	  bt_checkid = new JButton("중복확인");
 	  
 	  la_id = new JLabel("I  D:");
 	  la_pass1 = new JLabel("비  번:");
@@ -43,7 +42,6 @@ public class PassUpdateView extends JFrame {
 	  
 	  bt_submit.setBounds(50,240,90,25);
 	  bt_reset.setBounds(150,240,90,25);
-	  bt_checkid.setBounds(190,30,90,25);
 	  
 	  la_id.setBounds(10,30,100,25);
 	  la_pass1.setBounds(10,70,100,25);
@@ -60,7 +58,6 @@ public class PassUpdateView extends JFrame {
 	  
 	  add(bt_submit);
 	  add(bt_reset);
-	  add(bt_checkid);
 	  
 	  add(la_id); 
 	  add(la_pass1); 

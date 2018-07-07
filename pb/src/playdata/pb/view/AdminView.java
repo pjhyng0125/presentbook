@@ -70,7 +70,7 @@ public class AdminView extends JFrame {
 		add(bt_selectallbook);
 		add(bt_selectallmember);
 		
-		setVisible(true);
+		setVisible(false);
 		setSize(1000, 530);
 	}
 	public void displayTable(ArrayList<Object> list) {
@@ -82,8 +82,5 @@ public class AdminView extends JFrame {
 		   dtm.addRow(rowData);
 		   }//for
 		}//displayTable
-	public static void main(String[] args) {
-		new AdminView();
-	}
 }
 

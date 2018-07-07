@@ -6,85 +6,90 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class AddBookView extends JFrame 
 {
-	 public JTextField tf_id,tf_name,tf_email;
-	 public JPasswordField tf_pass,tf_pass2;
-	 public JButton bt_submit,bt_reset,bt_checkid;
-	 JLabel la_id,la_pass1,la_pass2,la_n,la_email, la_genre;
-	 public JComboBox<String> cb_genre;
+	 public JTextField tf_isbn,tf_genre,tf_price, tf_book, tf_writer;
+	 public JTextArea ta_content;
+	 public JButton bt_submit,bt_reset;
+	 JLabel la_isbn,la_book,la_writer,la_genre,la_price, la_content;
+	 JScrollPane sp;
 	  public AddBookView(){   
 	  setTitle("AddBookView");
 	  
-	  tf_id = new JTextField();
-	  tf_pass = new JPasswordField();
-	  tf_pass2 = new JPasswordField();
-	  tf_name= new JTextField();
-	  tf_email = new JTextField();
+	  tf_isbn = new JTextField();
+	  tf_book = new JPasswordField();
+	  tf_writer = new JPasswordField();
+	  tf_genre= new JTextField();
+	  tf_price = new JTextField();
+	  ta_content = new JTextArea();
 	  
 	  bt_submit = new JButton("등록");
 	  bt_reset = new JButton("취소");
-	  bt_checkid = new JButton("중복확인");
 	  
-	  la_id = new JLabel("I  D:");
-	  la_pass1 = new JLabel("비  번:");
-	  la_pass2 = new JLabel("비번확인:");
-	  la_n = new JLabel("이  름:");
-	  la_email = new JLabel("이메일:"); 
-	  la_genre = new JLabel("장  르:");
+	  la_isbn = new JLabel("도서번호:");
+	  la_book = new JLabel("도서명:");
+	  la_writer = new JLabel("저자명:");
+	  la_genre = new JLabel("장르:");
+	  la_price = new JLabel("도서원가:"); 
+	  la_content = new JLabel("줄거리:");
 	  
 //setBounds 
-	  tf_id.setBounds(80,30,100,25);
-	  tf_pass.setBounds(80,70,100,25);
-	  tf_pass2.setBounds(80,110,100,25);
-	  tf_name.setBounds(80,150,100,25);
-	  tf_email.setBounds(80,190,180,25);
-	  cb_genre.setBounds(80,230,100,25);
+	  tf_isbn.setBounds(80,30,100,25);
+	  tf_book.setBounds(80,70,100,25);
+	  tf_writer.setBounds(80,110,100,25);
+	  tf_genre.setBounds(80,150,100,25);
+	  tf_price.setBounds(80,190,100,25);
+	  sp = new JScrollPane(ta_content);
+	  sp.setBounds(80,230,180,60);
 	  
-	  bt_submit.setBounds(50,290,90,25);
-	  bt_reset.setBounds(150,290,90,25);
-	  bt_checkid.setBounds(190,30,90,25);
+	  bt_submit.setBounds(50,310,90,25);
+	  bt_reset.setBounds(150,310,90,25);
 	  
-	  la_id.setBounds(10,30,100,25);
-	  la_pass1.setBounds(10,70,100,25);
-	  la_pass2.setBounds(10,110,100,25);
-	  la_n.setBounds(10,150,100,25);
-	  la_email.setBounds(10, 190, 100, 25);
-	  la_genre.setBounds(10, 230, 100, 25);
+	  la_isbn.setBounds(10,30,100,25);
+	  la_book.setBounds(10,70,100,25);
+	  la_writer.setBounds(10,110,100,25);
+	  la_genre.setBounds(10,150,100,25);
+	  la_price.setBounds(10, 190, 100, 25);
+	  la_content.setBounds(10, 230, 100, 25);
 //add
 	  setLayout(null);
-	  add(tf_id);
-	  add(tf_pass);
-	  add(tf_pass2);
-	  add(tf_name);
-	  add(tf_email);
-	  add(cb_genre);
+	  add(tf_isbn);
+	  add(tf_book);
+	  add(tf_writer);
+	  add(tf_genre);
+	  add(tf_price);
 	  
 	  add(bt_submit);
 	  add(bt_reset);
-	  add(bt_checkid);
 	  
-	  add(la_id); 
-	  add(la_pass1); 
-	  add(la_pass2); 
-	  add(la_n);
-	  add(la_email);
+	  add(la_isbn); 
+	  add(la_book); 
+	  add(la_writer); 
 	  add(la_genre);
+	  add(la_price);
+	  add(la_content);
+	  add(sp);
 	  
 	  setBounds(350,200,300,400); 
-	  setVisible(false);
+	  
+	  setVisible(true);
 	 }//생성자  
 	  public void showMsg(String msg) {
 	  JOptionPane.showMessageDialog(this, msg);
 	 }
 	  
 	  public void setEmpty() {
-	   tf_id.setText("");
-	   tf_email.setText("");
-	   tf_name.setText("");
-	   tf_pass.setText("");
-	   tf_pass2.setText("");
+	   tf_isbn.setText("");
+	   tf_price.setText("");
+	   tf_genre.setText("");
+	   tf_book.setText("");
+	   tf_writer.setText("");
 	  }
-}//JoinForm
+	  public static void main(String[] args) {
+		new AddBookView();
+	}
+}//AddBookView
