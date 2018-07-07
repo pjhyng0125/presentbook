@@ -16,7 +16,7 @@ public class PassUpdateView extends JFrame {
 	 
 	  public PassUpdateView()
 	 {   
-	  setTitle("회원가입");
+	  setTitle("비밀번호 수정");
 	  
 	  tf_id = new JTextField();
 	  tf_pass = new JPasswordField();
@@ -67,6 +67,9 @@ public class PassUpdateView extends JFrame {
 	  add(la_pass2); 
 	  add(la_n);
 	  add(la_email);
+	  
+	  tf_name.setEnabled(false);
+	  tf_id.setEnabled(false);
 	  
 	  setBounds(350,200,300,340); 
 	  setVisible(false);

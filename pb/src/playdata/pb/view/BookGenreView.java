@@ -25,11 +25,11 @@ public class BookGenreView extends JFrame {
 		bg.add(rb_2);
 		bg.add(rb_3);
 //setBounds
-		la_msg.setBounds(60, 30, 120, 30);
+		la_msg.setBounds(80, 30, 120, 30);
 		rb_1.setBounds(20, 100 , 80, 30);
 		rb_2.setBounds(120, 100 , 80, 30);
 		rb_3.setBounds(200, 100 , 80, 30);
-		bt_select.setBounds(60, 200, 90, 30);
+		bt_select.setBounds(90, 200, 100, 30);
 // frame
 		add(la_msg);
 		add(rb_1);
@@ -37,10 +37,8 @@ public class BookGenreView extends JFrame {
 		add(rb_3);
 		add(bt_select);
 		
+		rb_1.setSelected(true);
 		setSize(300, 300);
-		setVisible(true);
-	}
-	public static void main(String[] args) {
-		new BookGenreView();
+		setVisible(false);
 	}
 }
