@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import playdata.pb.model.dao.MemberDAO;
+import playdata.pb.view.AdminView;
 import playdata.pb.view.BookGenreView;
 import playdata.pb.view.BookSelectView;
 import playdata.pb.view.CashView;
@@ -23,7 +25,11 @@ public class Controller implements ActionListener {
 	MyPageView v_mypage;
 	HistoryView v_history;
 	CashView v_cash;
+	AdminView v_admin;
+	
 	int selected_book;
+	String userid;
+	boolean adminflage=false;
 	
 	public Controller() {
 		v_login = new LoginView();
@@ -34,6 +40,7 @@ public class Controller implements ActionListener {
 		v_mypage = new MyPageView();
 		v_history = new HistoryView();
 		v_cash = new CashView();
+		v_admin = new AdminView(); 
 		
 		eventup();
 	}
@@ -125,7 +132,22 @@ public class Controller implements ActionListener {
 			v_bookselect.setVisible(false);
 			v_bookgenre.setVisible(true);
 		}
-		else if(ob == v_login.bt_login) {
+		else if(ob == v_login.bt_login) {//로그인창 시작.
+			String id = v_login.tf_id.getText();
+			String pass = new String(v_login.tf_pass.getPassword());
+			
+			if(id.equals("admin") && pass.equals("manager")) {//1-1 관리자 로그인
+				v_login.showMsg("관리자 로그인 성공!!");
+				v_login.setVisible(false);
+				v_admin.setVisible(true);
+				return;
+			}
+			
+			if((new MemberDAO().loginCheck(id, pass))) { // 1.로그인 성공!
+				 System.out.println("hi");
+				}else {
+					
+			}
 			v_login.setVisible(false);
 			v_bookselect.setVisible(true);
 		}
