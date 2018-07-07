@@ -3,6 +3,7 @@ package playdata.pb.view;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class CashView extends JFrame{
@@ -36,4 +37,7 @@ public class CashView extends JFrame{
 		
 		setSize(300,300);
 	}
+	  public void showMsg(String msg) {
+	  JOptionPane.showMessageDialog(this, msg);
+	 }
 }

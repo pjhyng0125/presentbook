@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import playdata.pb.model.vo.Member;
 
@@ -22,7 +23,7 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			rs.next();
 			int t = rs.getInt(1);
-			System.out.println(t);
+			if(t>0)
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -97,6 +98,23 @@ public class MemberDAO {
 		return null;
 	}
 	
+	public String selectGenre(String id) {//아이디에 해당하는 장르 뿌려주기
+	    try {
+	         connect();
+	         String sql = "select genre from member where id=?";
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, id);
+	         rs = pstmt.executeQuery();
+	         rs.next();
+	         return rs.getString("genre");
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         disconnect();
+	      }
+	    return null;
+	}
+	
 	public Member selectMemberInfo(String id) {//회원정보 수정 클릭시 보일 정보
 		try {
 			connect();
@@ -119,6 +137,54 @@ public class MemberDAO {
 			disconnect();
 		}
 		return null;
+	}
+	
+	public ArrayList<Member> selectMember(String id){
+		ArrayList<Member> list = new ArrayList<>();
+		try {
+			connect();
+			String sql = "select ename, email,genre from member"
+						+ " where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				Member m  = new Member();
+					   m.setId(id);
+					   m.setEname(rs.getString("ename"));
+					   m.setEmail(rs.getString("email"));
+					   m.setGenre(rs.getString("genre"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	}
+	
+	public ArrayList<Member> selectAllMember(){
+		ArrayList<Member> list = new ArrayList<>();
+		try {
+			connect();
+			String sql = "select id, ename, email,genre from member";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Member m  = new Member();
+				m.setId(rs.getString("id"));
+				m.setEname(rs.getString("ename"));
+				m.setEmail(rs.getString("email"));
+				m.setGenre(rs.getString("genre"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
 	}
 	
 	public boolean updateMemberInfo(String id,String pass) {//비밀번호 변경

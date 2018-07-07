@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import playdata.pb.model.vo.Member;
 
 public class AdminView extends JFrame {
 	DefaultTableModel dtm, dtm2;
@@ -16,7 +19,7 @@ public class AdminView extends JFrame {
 	public JScrollPane sp, sp2;
 	public JButton bt_back, bt_addquiz, bt_selectmember, bt_addbook, bt_selectbook, bt_selectallmember, bt_selectallbook;
 	Object rowData[][]= new String[0][5];
-	Object columnnames[] = {"아이디", "비밀번호", "이름", "이메일", "장르"};
+	Object columnnames[] = {"아이디", "이름", "이메일", "장르"};
 	
 	Object rowData2[][]= new String[0][6];
 	Object columnnames2[] = {"도서명", "저자명", "줄거리", "장르", "퀴즈", "답"};
@@ -73,14 +76,18 @@ public class AdminView extends JFrame {
 		setVisible(false);
 		setSize(1000, 530);
 	}
-	public void displayTable(ArrayList<Object> list) {
+	public void displayTable(ArrayList<Member> list) {
 		   dtm.setRowCount(0);//출력될 시작행의 위치 0 ---> 첫번째행
 		     
 		   for(int i=0; i< list.size(); i++) {
-		   Object p = list.get(i);
-//		   Object rowData[]= {p.getNo(),p.getName(),p.getAge(),p.getJob()};
+		   Member m = list.get(i);
+		   Object rowData[]= {m.getId(),m.getEname(),m.getEmail(),m.getGenre()};
 		   dtm.addRow(rowData);
 		   }//for
 		}//displayTable
+	public String showInputMsg(String msg) {
+		  return JOptionPane.showInputDialog(this, msg);
+		 }
+	
 }
 
