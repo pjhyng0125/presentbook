@@ -2,9 +2,13 @@ package playdata.pb.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import playdata.pb.view.BookGenreView;
 import playdata.pb.view.BookSelectView;
+import playdata.pb.view.CashView;
+import playdata.pb.view.HistoryView;
 import playdata.pb.view.JoinView;
 import playdata.pb.view.LoginView;
 import playdata.pb.view.MyPageView;
@@ -17,6 +21,9 @@ public class Controller implements ActionListener {
 	BookGenreView v_bookgenre;
 	BookSelectView v_bookselect;
 	MyPageView v_mypage;
+	HistoryView v_history;
+	CashView v_cash;
+	int selected_book;
 	
 	public Controller() {
 		v_login = new LoginView();
@@ -25,6 +32,9 @@ public class Controller implements ActionListener {
 		v_bookgenre = new BookGenreView();
 		v_bookselect =new BookSelectView();
 		v_mypage = new MyPageView();
+		v_history = new HistoryView();
+		v_cash = new CashView();
+		
 		eventup();
 	}
 	
@@ -42,6 +52,50 @@ public class Controller implements ActionListener {
 		v_mypage.bt_update.addActionListener(this);
 		v_passup.bt_reset.addActionListener(this);
 		v_passup.bt_submit.addActionListener(this);
+		v_mypage.bt_history.addActionListener(this);
+		v_history.bt_back.addActionListener(this);
+		v_mypage.bt_cash.addActionListener(this);
+		v_cash.bt_back.addActionListener(this);
+		
+		for(int i=0; i<v_bookselect.v_bc.length; i++) {
+			v_bookselect.v_bc[i].tbt_image.addMouseListener(new MouseAdapter() {
+	         @Override
+	            public void mouseReleased(MouseEvent e) {      
+	            boolean flag = false;   //toggle button이 선택되었는지 여부를 확인하는 변수
+	            for(int i=0; i<v_bookselect.v_bc.length; i++) {
+	            	v_bookselect.v_bc[i].ta_content.setVisible(false);	
+	            }
+	         /*--------------------toggle button 체크 확인------------------*/
+	            for(int i=0; i<v_bookselect.v_bc.length; i++) {
+	               if(v_bookselect.v_bc[i].tbt_image.isSelected()) {
+	                  flag = true;
+	                  selected_book = i;
+	                  v_bookselect.v_bc[i].ta_content.setVisible(true);	
+	               }
+	            }
+	            
+	      /*--------------------toggle button 체크 여부에 따라 setEnabled() 호출 ------------------*/
+	            if(!flag) {   
+	               for(int j=0; j<v_bookselect.v_bc.length; j++) {
+	            	   v_bookselect.v_bc[j].tbt_image.setEnabled(true);
+	               }
+	            }
+	            else {
+	               for(int j=0; j<v_bookselect.v_bc.length; j++)
+	                  if(selected_book != j) {
+	                	v_bookselect.v_bc[j].tbt_image.setEnabled(false);
+	                  }
+	            }
+	            System.out.println("selected_book : "+selected_book);
+	            }//mouseReleased   
+	         });//v_schedule.v_sd[i].addMouseListener
+	      }//for
+	}
+	
+	public void setClickBookText(int i, boolean flag) {
+		v_bookselect.v_bc[i].la_name.setVisible(flag);
+		v_bookselect.v_bc[i].la_writer.setVisible(flag);
+		v_bookselect.v_bc[i].la_price.setVisible(flag);
 	}
 	
 	public static void main(String[] args) {
@@ -101,6 +155,22 @@ public class Controller implements ActionListener {
 		}
 		else if(ob == v_passup.bt_submit) {
 			v_passup.setVisible(false);
+			v_mypage.setVisible(true);
+		}
+		else if(ob == v_mypage.bt_history) {
+			v_mypage.setVisible(false);
+			v_history.setVisible(true);
+		}
+		else if(ob == v_history.bt_back) {
+			v_history.setVisible(false);
+			v_mypage.setVisible(true);
+		}
+		else if(ob == v_mypage.bt_cash) {
+			v_mypage.setVisible(false);
+			v_cash.setVisible(true);
+		}
+		else if(ob == v_cash.bt_back) {
+			v_cash.setVisible(false);
 			v_mypage.setVisible(true);
 		}
 			
